@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+  <title> {%block title%}{% endblock title%}LAB</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid ">
+      <div class="navbar-brand mb-0 h1 text-white" href="/index">LAB</div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/index">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about">About Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/upload">Upload Timetable</a>
+          </li>{% endif %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/timetable">Timetable</a>
+          </li>{% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/cert_upload">Upload Certificate</a>
+          </li>{% endif %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/lab_cert">Lab Readiness Certificate</a>
+          </li>
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/booking">Slot Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/display_slot">Booked Slots</a>
+          </li>
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Labs
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="/lab5">LAB 5</a></li>
+            <li><a class="dropdown-item" href="/lab7">LAB 7</a></li>
+            <li><a class="dropdown-item" href="/lab11">LAB 11</a></li>
+            <li><a class="dropdown-item" href="/labcc">LAB CC</a></li>
+          </ul>
+        </li>
+      </ul>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Welcome, {{user.username}} </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="float-right nav-link text-white " href="/userlogin">Log In</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  {%block body%} {%endblock body%}
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

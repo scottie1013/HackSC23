@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Recurrence Details</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    form {
+      width: 400px;
+      margin: 0 auto;
+      float: left;
+    }
+
+    .pink-round-block {
+      display: flex;
+      align-items: center;
+      background-color: rgb(220, 59, 123);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    .label {
+      width: 100px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    input, select {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: rgb(220, 59, 123);
+      color: white;
+      padding: 10px;
+      border: 20px;
+      cursor: pointer;
+      width: 200px;
+      height: 50px;
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Patient Recurrence Details</h1>
+
+  <form>
+    <div class="pink-round-block">
+      <label for="age" class="label">Age:</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="menopause" class="label">Menopause:</label>
+      <select id="menopause" name="menopause" required>
+        <option value="Pre-menopausal">Pre-menopausal</option>
+        <option value="ge40">ge40</option>
+        <option value="if40">if40</option>
+      </select>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="tumorSize" class="label">Tumor size (mm):</label>
+      <input type="number" id="tumorSize" name="tumorSize" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="invNodes" class="label">Invasive nodes:</label>
+      <input type="number" id="invNodes" name="invNodes" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="nodeCaps" class="label">Node caps:</label>
+      <select id="nodeCaps" name="nodeCaps" required>
+        <option value="Positive">Positive</option>
+        <option value="Negative">Negative</option>
+      </select>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="irradiate" class="label">Irradiated:</label>
+      <select id="irradiate" name="irradiate" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Recurrence Details</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    form {
+      width: 400px;
+      margin: 0 auto;
+      float: left;
+    }
+
+    .pink-round-block {
+      display: flex;
+      align-items: center;
+      background-color: rgb(220, 59, 123);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    .label {
+      width: 100px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    input, select {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: rgb(220, 59, 123);
+      color: white;
+      padding: 10px;
+      border: 20px;
+      cursor: pointer;
+      width: 200px;
+      height: 50px;
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Patient Recurrence Details</h1>
+
+  <div class="app">
+    <div>
+        <div>
+          <h1 class="title">Breast Cancer Recurrence</h1>
+            <form action="{% url 'home' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.age }}
+                       </div>
+                       <div class="form-group col-md-6 mb-0">
+                           {{ form.menopause }}
+                       </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.tumor_size }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.inv_nodes}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.node_caps }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.breast }}
+                    </div>
+                </div>
+                
+                
+                <div class="container">
+                    <button type="submit" class="btn btn-primary">Predict</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+  {% comment %} <form>
+    <div class="pink-round-block">
+      <label for="age" class="label">Age:</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="menopause" class="label">Menopause:</label>
+      <select id="menopause" name="menopause" required>
+        <option value="Pre-menopausal">Pre-menopausal</option>
+        <option value="ge40">ge40</option>
+        <option value="if40">if40</option>
+      </select>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="tumorSize" class="label">Tumor size (mm):</label>
+      <input type="number" id="tumorSize" name="tumorSize" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="invNodes" class="label">Invasive nodes:</label>
+      <input type="number" id="invNodes" name="invNodes" required>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="nodeCaps" class="label">Node caps:</label>
+      <select id="nodeCaps" name="nodeCaps" required>
+        <option value="Positive">Positive</option>
+        <option value="Negative">Negative</option>
+      </select>
+    </div>
+
+    <div class="pink-round-block">
+      <label for="irradiate" class="label">Irradiated:</label>
+      <select id="irradiate" name="irradiate" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>  {% endcomment %}
+
+  <!-- prediction_form.html -->
+{% comment %} <form method="post" action="{% url 'predict_recurrence' %}">
+  {% csrf_token %} {% endcomment %}
+  
+  {% comment %} <label for="age">Age:</label>
+  <input type="text" name="age">
+  <label for="menopause">Menopause:</label>
+  <input type="text" name="menopause">
+  <label for="tumor_size">Tumor Size:</label>
+  <input type="text" name="tumor_size">
+  <label for="inv_nodes">INV Nodes:</label>
+  <input type="text" name="inv_nodes">
+  <label for="node_caps">Node Caps:</label>
+  <input type="text" name="node_caps">
+  <label for="irradiate">Irradiate:</label>
+  <input type="text" name="irradiate"> {% endcomment %}
+  {% comment %} <div class="pink-round-block">
+    <label for="age" class="label">Age:</label>
+    <input type="number" id="age" name="age" required>
+  </div>
+
+  <div class="pink-round-block">
+    <label for="menopause" class="label">Menopause:</label>
+    <select id="menopause" name="menopause" required>
+      <option value="Pre-menopausal">Pre-menopausal</option>
+      <option value="1">1</option>
+      <option value="0">0</option>
+    </select>
+  </div>
+
+  <div class="pink-round-block">
+    <label for="tumor_size" class="label">Tumor size (mm):</label>
+    <input type="number" id="tumor_size" name="tumor_size" required>
+  </div>
+
+  <div class="pink-round-block">
+    <label for="inv_nodes" class="label">Invasive nodes:</label>
+    <input type="number" id="inv_nodes" name="inv_nodes" required>
+  </div>
+
+  <div class="pink-round-block">
+    <label for="node_caps" class="label">Node caps:</label>
+    <select id="node_caps" name="node_caps" required>
+      <option value="1">Positive</option>
+      <option value="0">Negative</option>
+    </select>
+  </div>
+
+  <div class="pink-round-block">
+    <label for="irradiate" class="label">Irradiated:</label>
+    <select id="irradiate" name="irradiate" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <!-- Add other input fields for the rest of the attributes -->
+
+  <button type="submit">Predict</button>
+</form> {% endcomment %}
+
+</body>
+</html>

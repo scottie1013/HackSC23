@@ -12,6 +12,6 @@ urlpatterns = [
     path('test1', views.test1, name='test1'),
     # path('predict_recurrence', views.predict_recurrence, name='predict_recurrence'),
     path('home', views.PredictCreate, name='home'),
-    path('index', views.pred, name='index'),
-    path('test2', views.pred, name='test2')
+    # path('index', views.pred, name='index'),
+    # path('test2', views.pred, name='test2')
 ]

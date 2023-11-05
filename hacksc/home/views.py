@@ -135,6 +135,7 @@ from django.shortcuts import render
 from . forms import PredictCreateForm
 from .models import PredictCancer
 import pickle
+# from sklearn.externals import joblib
 from django.views.generic.list import ListView
 # from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
@@ -174,14 +175,15 @@ def PredictCreate(request):
         # radd_val = radd.transform([irradiate])
 
         #make predictions
-        # scaled= pickle.load(open('scaling.pkl', 'rb'))
-        model = joblib.load(open('svm.pkl', 'rb'))
+        model = pickle.load(open('svm.pkl', 'rb'))
+        # model = joblib.load(open('svm.sav', 'rb'))
 
         # classification = model.predict(model.transform([[age_val, meno_val, tumor_val, nodes_val, caps_val, radd_val]]))
         input_data = [age, menopause, tumor_size, inv_nodes, node_caps, irradiate]
 
         # Make predictions using the model
         prediction = model.predict(input_data)
+        print(prediction)
 
         #saving prediction in database
         result = prediction[0]
@@ -192,9 +194,10 @@ def PredictCreate(request):
         else:
             return 'error'
         
-        PredictCancer.objects.create(age=age, menopause=menopause, tumor_size=tumor_size, inv_nodes=inv_nodes,
-                 node_caps=node_caps,  irradiate=irradiate, classification=context['prediction'])
+        # PredictCancer.objects.create(age=age, menopause=menopause, tumor_size=tumor_size, inv_nodes=inv_nodes,
+        #          node_caps=node_caps,  irradiate=irradiate, classification=context['prediction'])
         
         return render(request, "prediction_result.html", context)
+            
 
     return render(request, 'prediction_form.html', {'form':form})

@@ -19,6 +19,8 @@ def test(request):
 
 # def test1(request):
 #     return render(request, 'test1.html')
+def test2(request):
+    return render(request, 'test2.html')
 
 
 # # views.py
